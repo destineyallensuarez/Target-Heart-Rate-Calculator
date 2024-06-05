@@ -1,0 +1,77 @@
+/ Programmer:Destiney Allen-Suarez - Viet Trinh Nguyen - Sofia Lacki
+// Source:DD/W3school/ChatGBT
+// Class:CS 142 f-f
+// Purpose: The purpose of this program is to calculate and display important heart rate information for a person, including their age,
+ // maximum heart rate, and target heart rate range.This helps people who want to exercise safely understand their heart's response to physical activity.
+
+import java.util.Calendar;
+
+public class HeartRates {
+    // Define class attributes
+    private String firstName;
+    private String lastName;
+    private int birthYear;
+    private int currentYear;
+
+    // Constructor to initialize the class with person's information
+    public HeartRates(String firstName, String lastName, int birthYear) {
+        // Validate birth year
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthYear = birthYear;
+        updateCurrentYear(); // Update current year when the object is created
+    }
+
+    // Getters and setters for class attributes
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getBirthYear() {
+        return birthYear;
+    }
+
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
+    }
+
+    public int getCurrentYear() {
+        return currentYear;
+    }
+
+    // Method to calculate person's age
+    public int getAge() {
+        return currentYear - birthYear;
+    }
+
+    // Method to calculate person's maximum heart rate
+    public int getMaxHeartRate() {
+        return 220 - getAge();
+    }
+
+    // Method to calculate person's target heart rate range
+    public int[] getTargetHeartRateRange() {
+        int maxHeartRate = getMaxHeartRate();
+        int minimumHeartRate = (int) (maxHeartRate * 0.5);
+        int maximumHeartRate = (int) (maxHeartRate * 0.85);
+        return new int[]{minimumHeartRate, maximumHeartRate};
+    }
+
+    // Method to update current year
+    private void updateCurrentYear() {
+        Calendar now = Calendar.getInstance();
+        currentYear = now.get(Calendar.YEAR);
+    }
+}
